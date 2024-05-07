@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Spiderverses {
+  id                String     @id @default(uuid())
+  spiderManName     String     @unique @map("spider_man_name")
+  spiderManPassword String     @map("spider_man_password")
+  earth             Int
+  powers            String
+  villains          Villains[]
+
+  @@map("spiderverses")
+}
+
+model Villains {
+  id           Int          @id @default(autoincrement())
+  villainName  String       @map("villain_name")
+  powers       String
+  fightVs      String       @map("fight_vs")
+  spiderverses Spiderverses @relation(fields: [fightVs], references: [id], map: "Villains_fight_vs_fkey")
+
+  @@index([fightVs], map: "Villains_fight_vs_fkey")
+  @@map("villains")
+}
