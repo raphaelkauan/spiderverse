@@ -2,11 +2,11 @@ import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { PrismaService } from "./database/prisma.service";
-import { SpiderversesModule } from "./modules/spiderverses/spiderverses.module";
-import { VillainsModule } from "./modules/villains/villains.module";
+import { SpiderverseModule } from "./modules/spiderverse/spiderverse.module";
+import { VillainModule } from "./modules/villain/villain.module";
 
 @Module({
-    imports: [SpiderversesModule, VillainsModule],
+    imports: [SpiderverseModule, VillainModule],
     controllers: [AppController],
     providers: [AppService, PrismaService],
 })
