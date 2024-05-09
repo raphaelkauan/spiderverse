@@ -13,6 +13,7 @@ model Spiderverses {
   spiderManPassword String     @map("spider_man_password")
   earth             Int
   powers            String
+  dataCreate        DateTime   @default(now()) @map("data_create")
   villains          Villains[]
 
   @@map("spiderverses")
