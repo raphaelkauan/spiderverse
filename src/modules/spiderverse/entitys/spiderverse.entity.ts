@@ -4,4 +4,5 @@ export class Spiderverse {
     spiderManPassword: string;
     earth: number;
     powers: string;
+    dataCreate?: Date;
 }

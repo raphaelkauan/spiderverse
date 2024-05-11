@@ -24,4 +24,6 @@ export class CreateSpiderverseDto extends Spiderverse {
     @IsNotEmpty()
     @IsString()
     powers: string;
+
+    dataCreate?: Date;
 }
