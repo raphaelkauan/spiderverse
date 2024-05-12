@@ -6,5 +6,4 @@ export interface SpiderverseInterface extends Spiderverse {
     spiderManPassword: string;
     earth: number;
     powers: string;
-    dataCreate?: Date;
 }
