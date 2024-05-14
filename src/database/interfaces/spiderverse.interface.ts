@@ -1,4 +1,4 @@
-import { Spiderverse } from "src/modules/spiderverse/entitys/spiderverse.entity";
+import { Spiderverse } from "src/modules/spiderverse/entity/spiderverse.entity";
 
 export interface SpiderverseInterface extends Spiderverse {
     id?: string;
