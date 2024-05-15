@@ -6,4 +6,8 @@ export class AuthService {
     login(loginDto: LoginDto) {
         return loginDto;
     }
+
+    validationSpider(spiderManName, spiderManPassword) {
+        return { spiderManName, spiderManPassword };
+    }
 }
