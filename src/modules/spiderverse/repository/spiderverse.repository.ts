@@ -3,6 +3,7 @@ import { PrismaService } from "../../../database/prisma.service";
 import { CreateSpiderverseDto } from "src/modules/spiderverse/dto/create-spiderverse.dto";
 import { SpiderverseInterface } from "../../../database/interfaces/spiderverse.interface";
 import * as bcrypt from "bcrypt";
+import { UpdateSpiderverseDto } from "../dto/update_spiderverse.dto";
 
 @Injectable()
 export class SpiderverseRepository {
@@ -46,5 +47,25 @@ export class SpiderverseRepository {
 
     async findOne(id: string): Promise<any> {
         return this.prisma.spiderverses.findUnique({ where: { id } });
+    }
+
+    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto) {
+        const spiderUpdate = await this.prisma.spiderverses.update({
+            where: {
+                id,
+            },
+            data: {
+                spiderManName: updateSpiderverseDto.spiderManName,
+                earth: updateSpiderverseDto.earth,
+                powers: updateSpiderverseDto.powers,
+            },
+            select: {
+                spiderManName: true,
+                earth: true,
+                powers: true,
+            },
+        });
+
+        return spiderUpdate;
     }
 }

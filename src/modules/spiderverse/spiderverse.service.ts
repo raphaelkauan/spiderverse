@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { SpiderverseRepository } from "src/modules/spiderverse/repository/spiderverse.repository";
 import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
 import { PrismaService } from "src/database/prisma.service";
+import { UpdateSpiderverseDto } from "./dto/update_spiderverse.dto";
 
 @Injectable()
 export class SpiderverseService {
@@ -36,5 +37,17 @@ export class SpiderverseService {
         const spider = await this.spiderverseRepository.findOne(id);
 
         return spider;
+    }
+
+    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto) {
+        const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(updateSpiderverseDto.spiderManName);
+
+        if (validationSpiderManName) {
+            throw new HttpException("Esse nome já existe!", HttpStatus.CONFLICT);
+        }
+
+        await this.spiderverseRepository.update(id, updateSpiderverseDto);
+
+        return "Spider atualizado com sucesso!";
     }
 }
