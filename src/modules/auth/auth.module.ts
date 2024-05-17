@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
-import { SpiderverseRepository } from "src/database/repository/spiderverse.repository";
+import { SpiderverseRepository } from "src/modules/spiderverse/repository/spiderverse.repository";
 import { PrismaService } from "src/database/prisma.service";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";

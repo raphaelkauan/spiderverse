@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { LoginDto } from "./dto/login.dto";
-import { SpiderverseRepository } from "src/database/repository/spiderverse.repository";
+import { SpiderverseRepository } from "src/modules/spiderverse/repository/spiderverse.repository";
 import * as bcrypt from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
 

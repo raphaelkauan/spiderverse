@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { SpiderverseRepository } from "src/database/repository/spiderverse.repository";
+import { SpiderverseRepository } from "src/modules/spiderverse/repository/spiderverse.repository";
 import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
 import { PrismaService } from "src/database/prisma.service";
 
@@ -24,5 +24,11 @@ export class SpiderverseService {
         }
 
         return { ...createSpiderverseDto, spiderManPassword: undefined };
+    }
+
+    async findAll(pageIndex?: string) {
+        const spiderverse = await this.spiderverseRepository.findAll(pageIndex);
+
+        return spiderverse;
     }
 }
