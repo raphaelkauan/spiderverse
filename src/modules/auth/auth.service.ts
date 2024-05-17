@@ -2,14 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { LoginDto } from "./dto/login.dto";
 import { SpiderverseRepository } from "src/database/repository/spiderverse.repository";
 import * as bcrypt from "bcrypt";
-import { PrismaService } from "src/database/prisma.service";
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private readonly spiderverseRepository: SpiderverseRepository,
-        private readonly prisma: PrismaService,
-    ) {}
+    constructor(private readonly spiderverseRepository: SpiderverseRepository) {}
 
     async login(loginDto: LoginDto): Promise<any> {
         const spider = await this.spiderverseRepository.findBySpiderManName(loginDto.spiderManName);
