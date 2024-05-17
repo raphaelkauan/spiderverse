@@ -17,8 +17,8 @@ export class SpiderverseRepository {
         return this.prisma.spiderverses.create({ data: createSpiderverseDto });
     }
 
-    async findBySpiderManName(SpiderManName: string): Promise<SpiderverseInterface> {
-        return this.prisma.spiderverses.findUnique({ where: { spiderManName: SpiderManName } });
+    async findBySpiderManName(spiderManName: string): Promise<SpiderverseInterface> {
+        return this.prisma.spiderverses.findUnique({ where: { spiderManName } });
     }
 
     async findAll(pageIndex: string): Promise<any> {
@@ -42,5 +42,9 @@ export class SpiderverseRepository {
             take: 5,
             skip: skipValue,
         });
+    }
+
+    async findOne(id: string): Promise<any> {
+        return this.prisma.spiderverses.findUnique({ where: { id } });
     }
 }

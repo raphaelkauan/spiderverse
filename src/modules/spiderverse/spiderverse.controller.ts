@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { SpiderverseService } from "./spiderverse.service";
 import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
 import { IsPublic } from "../auth/decorators/is_public.decorator";
@@ -7,15 +7,21 @@ import { IsPublic } from "../auth/decorators/is_public.decorator";
 export class SpiderverseController {
     constructor(private readonly spiderverseService: SpiderverseService) {}
 
-    @IsPublic()
     @Post()
+    @IsPublic()
     createSpiderverse(@Body() createSpiderverseDto: CreateSpiderverseDto) {
         return this.spiderverseService.createSpiderverse(createSpiderverseDto);
     }
 
-    @IsPublic()
     @Get()
+    @IsPublic()
     findAll(@Query("pageIndex") pageIndex?: string) {
         return this.spiderverseService.findAll(pageIndex);
+    }
+
+    @Get(":id")
+    @IsPublic()
+    findOne(@Param("id") id: string) {
+        return this.spiderverseService.findOne(id);
     }
 }

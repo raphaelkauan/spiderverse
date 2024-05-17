@@ -31,4 +31,10 @@ export class SpiderverseService {
 
         return spiderverse;
     }
+
+    async findOne(id: string) {
+        const spider = await this.spiderverseRepository.findOne(id);
+
+        return spider;
+    }
 }
