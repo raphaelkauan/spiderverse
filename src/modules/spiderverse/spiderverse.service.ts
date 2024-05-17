@@ -11,9 +11,7 @@ export class SpiderverseService {
     ) {}
 
     async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto) {
-        const validationSpiderManName = await this.prisma.spiderverses.findFirst({
-            where: { spiderManName: createSpiderverseDto.spiderManName },
-        });
+        const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(createSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {
             throw new HttpException("Esse nome já existe!", HttpStatus.CONFLICT);
