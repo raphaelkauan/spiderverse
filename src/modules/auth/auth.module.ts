@@ -5,6 +5,7 @@ import { SpiderverseRepository } from "src/database/repository/spiderverse.repos
 import { PrismaService } from "src/database/prisma.service";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
+import { JwtStrategy } from "./guards/strategies/jwt.strategy";
 
 @Module({
     imports: [
@@ -15,6 +16,6 @@ import { JwtModule } from "@nestjs/jwt";
         }),
     ],
     controllers: [AuthController],
-    providers: [AuthService, SpiderverseRepository, PrismaService],
+    providers: [AuthService, SpiderverseRepository, PrismaService, JwtStrategy],
 })
 export class AuthModule {}
