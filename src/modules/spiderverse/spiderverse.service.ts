@@ -45,16 +45,23 @@ export class SpiderverseService {
         return spider;
     }
 
-    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto) {
+    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
+        if (typeof id !== "string" || id.trim() === "") {
+            throw new Error("ID inválido!");
+        }
+
         const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(updateSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {
             throw new HttpException("Esse nome já existe!", HttpStatus.CONFLICT);
         }
 
-        await this.spiderverseRepository.update(id, updateSpiderverseDto);
-
-        return "Spider atualizado com sucesso!";
+        try {
+            await this.spiderverseRepository.update(id, updateSpiderverseDto);
+            return { message: "Spider atualizado com sucesso!" };
+        } catch (error) {
+            throw new error(error);
+        }
     }
 
     async delete(id: string): Promise<{ message: string }> {

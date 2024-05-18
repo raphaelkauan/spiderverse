@@ -28,7 +28,7 @@ export class SpiderverseController {
 
     @Patch(":id")
     @IsPublic()
-    update(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto) {
+    update(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
         return this.spiderverseService.update(id, updateSpiderverseDto);
     }
 
