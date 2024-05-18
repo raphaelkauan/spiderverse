@@ -9,7 +9,7 @@ import { UpdateSpiderverseDto } from "../dto/update_spiderverse.dto";
 export class SpiderverseRepository {
     constructor(private readonly prisma: PrismaService) {}
 
-    async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
+    async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<any> {
         createSpiderverseDto = {
             ...createSpiderverseDto,
             spiderManPassword: await bcrypt.hash(createSpiderverseDto.spiderManPassword, 7),
@@ -49,7 +49,7 @@ export class SpiderverseRepository {
         return this.prisma.spiderverses.findUnique({ where: { id } });
     }
 
-    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto) {
+    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<any> {
         const spiderUpdate = await this.prisma.spiderverses.update({
             where: {
                 id,
@@ -67,5 +67,9 @@ export class SpiderverseRepository {
         });
 
         return spiderUpdate;
+    }
+
+    async delete(id: string): Promise<any> {
+        return await this.prisma.spiderverses.delete({ where: { id } });
     }
 }

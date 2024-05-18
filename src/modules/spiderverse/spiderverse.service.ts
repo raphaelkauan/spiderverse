@@ -34,6 +34,12 @@ export class SpiderverseService {
     }
 
     async findOne(id: string) {
+        const validationSpiderverse = await this.spiderverseRepository.findOne(id);
+
+        if (!validationSpiderverse) {
+            throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
+        }
+
         const spider = await this.spiderverseRepository.findOne(id);
 
         return spider;
@@ -49,5 +55,24 @@ export class SpiderverseService {
         await this.spiderverseRepository.update(id, updateSpiderverseDto);
 
         return "Spider atualizado com sucesso!";
+    }
+
+    async delete(id: string): Promise<{ message: string }> {
+        if (typeof id !== "string" || id.trim() === "") {
+            throw new Error("ID inválido!");
+        }
+
+        const validationSpiderverse = await this.spiderverseRepository.findOne(id);
+
+        if (!validationSpiderverse) {
+            throw new HttpException("Esse id está inválido!", HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            await this.spiderverseRepository.delete(id);
+            return { message: "Spider deletado com deletado!" };
+        } catch (error) {
+            throw new error(error);
+        }
     }
 }

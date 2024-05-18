@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
 import { SpiderverseService } from "./spiderverse.service";
 import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
 import { IsPublic } from "../auth/decorators/is_public.decorator";
@@ -30,5 +30,11 @@ export class SpiderverseController {
     @IsPublic()
     update(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto) {
         return this.spiderverseService.update(id, updateSpiderverseDto);
+    }
+
+    @Delete(":id")
+    @IsPublic()
+    delete(@Param("id") id: string): Promise<{ message: string }> {
+        return this.spiderverseService.delete(id);
     }
 }

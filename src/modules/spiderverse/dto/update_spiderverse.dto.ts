@@ -10,6 +10,4 @@ export class UpdateSpiderverseDto {
 
     @IsString()
     powers?: string;
-
-    dataCreate?: Date;
 }
