@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
 import { SpiderverseService } from "./spiderverse.service";
-import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
+import { CreateSpiderverseDto } from "./dto/create_spiderverse.dto";
 import { IsPublic } from "../auth/decorators/is_public.decorator";
 import { UpdateSpiderverseDto } from "./dto/update_spiderverse.dto";
 import { SpiderverseInterface } from "src/database/interfaces/spiderverse.interface";
@@ -11,7 +11,7 @@ export class SpiderverseController {
 
     @Post()
     @IsPublic()
-    createSpiderverse(@Body() createSpiderverseDto: CreateSpiderverseDto) {
+    createSpiderverse(@Body() createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
         return this.spiderverseService.createSpiderverse(createSpiderverseDto);
     }
 

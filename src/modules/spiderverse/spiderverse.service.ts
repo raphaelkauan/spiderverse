@@ -1,18 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { SpiderverseRepository } from "src/modules/spiderverse/repository/spiderverse.repository";
-import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
-import { PrismaService } from "src/database/prisma.service";
+import { CreateSpiderverseDto } from "./dto/create_spiderverse.dto";
 import { UpdateSpiderverseDto } from "./dto/update_spiderverse.dto";
 import { SpiderverseInterface } from "src/database/interfaces/spiderverse.interface";
 
 @Injectable()
 export class SpiderverseService {
-    constructor(
-        private readonly spiderverseRepository: SpiderverseRepository,
-        private readonly prisma: PrismaService,
-    ) {}
+    constructor(private readonly spiderverseRepository: SpiderverseRepository) {}
 
-    async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto) {
+    async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
         const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(createSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {

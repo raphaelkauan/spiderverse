@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../../../database/prisma.service";
-import { CreateSpiderverseDto } from "src/modules/spiderverse/dto/create-spiderverse.dto";
+import { CreateSpiderverseDto } from "src/modules/spiderverse/dto/create_spiderverse.dto";
 import { SpiderverseInterface } from "../../../database/interfaces/spiderverse.interface";
 import * as bcrypt from "bcrypt";
 import { UpdateSpiderverseDto } from "../dto/update_spiderverse.dto";
@@ -9,7 +9,7 @@ import { UpdateSpiderverseDto } from "../dto/update_spiderverse.dto";
 export class SpiderverseRepository {
     constructor(private readonly prisma: PrismaService) {}
 
-    async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<any> {
+    async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
         createSpiderverseDto = {
             ...createSpiderverseDto,
             spiderManPassword: await bcrypt.hash(createSpiderverseDto.spiderManPassword, 7),
