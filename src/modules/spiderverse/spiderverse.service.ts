@@ -3,6 +3,7 @@ import { SpiderverseRepository } from "src/modules/spiderverse/repository/spider
 import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
 import { PrismaService } from "src/database/prisma.service";
 import { UpdateSpiderverseDto } from "./dto/update_spiderverse.dto";
+import { SpiderverseInterface } from "src/database/interfaces/spiderverse.interface";
 
 @Injectable()
 export class SpiderverseService {
@@ -33,23 +34,17 @@ export class SpiderverseService {
         return spiderverse;
     }
 
-    async findOne(id: string) {
-        const validationSpiderverse = await this.spiderverseRepository.findOne(id);
+    async findOne(id: string): Promise<SpiderverseInterface> {
+        const spider = await this.spiderverseRepository.findOne(id);
 
-        if (!validationSpiderverse) {
+        if (!spider) {
             throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
         }
-
-        const spider = await this.spiderverseRepository.findOne(id);
 
         return spider;
     }
 
     async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
-        if (typeof id !== "string" || id.trim() === "") {
-            throw new Error("ID inválido!");
-        }
-
         const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(updateSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {
@@ -65,10 +60,6 @@ export class SpiderverseService {
     }
 
     async delete(id: string): Promise<{ message: string }> {
-        if (typeof id !== "string" || id.trim() === "") {
-            throw new Error("ID inválido!");
-        }
-
         const validationSpiderverse = await this.spiderverseRepository.findOne(id);
 
         if (!validationSpiderverse) {

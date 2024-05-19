@@ -45,8 +45,20 @@ export class SpiderverseRepository {
         });
     }
 
-    async findOne(id: string): Promise<any> {
-        return this.prisma.spiderverses.findUnique({ where: { id } });
+    async findOne(id: string): Promise<SpiderverseInterface> {
+        const spiderFindOne = this.prisma.spiderverses.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                spiderManName: true,
+                spiderManPassword: false,
+                earth: true,
+                powers: true,
+                dataCreate: true,
+            },
+        });
+
+        return spiderFindOne;
     }
 
     async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<any> {

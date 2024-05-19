@@ -1,9 +1,8 @@
-import { Spiderverse } from "src/modules/spiderverse/entity/spiderverse.entity";
-
-export interface SpiderverseInterface extends Spiderverse {
+export interface SpiderverseInterface {
     id?: string;
     spiderManName: string;
-    spiderManPassword: string;
+    spiderManPassword?: string;
     earth: number;
     powers: string;
+    dataCreate?: Date;
 }

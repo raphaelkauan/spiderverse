@@ -3,6 +3,7 @@ import { SpiderverseService } from "./spiderverse.service";
 import { CreateSpiderverseDto } from "./dto/create-spiderverse.dto";
 import { IsPublic } from "../auth/decorators/is_public.decorator";
 import { UpdateSpiderverseDto } from "./dto/update_spiderverse.dto";
+import { SpiderverseInterface } from "src/database/interfaces/spiderverse.interface";
 
 @Controller("spiderverse")
 export class SpiderverseController {
@@ -22,7 +23,7 @@ export class SpiderverseController {
 
     @Get(":id")
     @IsPublic()
-    findOne(@Param("id") id: string) {
+    findOne(@Param("id") id: string): Promise<SpiderverseInterface> {
         return this.spiderverseService.findOne(id);
     }
 
