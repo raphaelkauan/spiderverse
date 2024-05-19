@@ -28,10 +28,13 @@ export class SpiderverseService {
         return { ...createSpiderverseDto, spiderManPassword: undefined };
     }
 
-    async findAll(pageIndex?: string) {
-        const spiderverse = await this.spiderverseRepository.findAll(pageIndex);
-
-        return spiderverse;
+    async findAll(pageIndex?: string): Promise<SpiderverseInterface[]> {
+        try {
+            const spiderFindAll = await this.spiderverseRepository.findAll(pageIndex);
+            return spiderFindAll;
+        } catch (error) {
+            throw new error(error);
+        }
     }
 
     async findOne(id: string): Promise<SpiderverseInterface> {

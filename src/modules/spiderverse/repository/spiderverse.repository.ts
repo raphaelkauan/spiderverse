@@ -22,17 +22,18 @@ export class SpiderverseRepository {
         return this.prisma.spiderverses.findUnique({ where: { spiderManName } });
     }
 
-    async findAll(pageIndex: string): Promise<any> {
+    async findAll(pageIndex: string): Promise<SpiderverseInterface[]> {
         let skipValue = 0;
         if (pageIndex) {
             const convertPageIndex = Number(pageIndex);
             skipValue = convertPageIndex * 5;
         }
 
-        return this.prisma.spiderverses.findMany({
+        const spiderFindAll = await this.prisma.spiderverses.findMany({
             select: {
                 id: true,
                 spiderManName: true,
+                spiderManPassword: false,
                 earth: true,
                 powers: true,
                 dataCreate: true,
@@ -43,10 +44,12 @@ export class SpiderverseRepository {
             take: 5,
             skip: skipValue,
         });
+
+        return spiderFindAll;
     }
 
     async findOne(id: string): Promise<SpiderverseInterface> {
-        const spiderFindOne = this.prisma.spiderverses.findUnique({
+        const spiderFindOne = await this.prisma.spiderverses.findUnique({
             where: { id },
             select: {
                 id: true,

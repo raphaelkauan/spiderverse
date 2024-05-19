@@ -17,7 +17,7 @@ export class SpiderverseController {
 
     @Get()
     @IsPublic()
-    findAll(@Query("pageIndex") pageIndex?: string) {
+    findAll(@Query("pageIndex") pageIndex?: string): Promise<SpiderverseInterface[]> {
         return this.spiderverseService.findAll(pageIndex);
     }
 
