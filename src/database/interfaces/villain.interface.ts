@@ -1,4 +1,4 @@
-export class Villain {
+export interface VillainInterface {
     id?: number;
     villainName: string;
     powers: string;

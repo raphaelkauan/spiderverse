@@ -10,16 +10,16 @@ export class SpiderverseRepository {
     constructor(private readonly prisma: PrismaService) {}
 
     async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
-        createSpiderverseDto = {
+        const data = {
             ...createSpiderverseDto,
             spiderManPassword: await bcrypt.hash(createSpiderverseDto.spiderManPassword, 7),
         };
 
-        return this.prisma.spiderverses.create({ data: createSpiderverseDto });
+        return await this.prisma.spiderverses.create({ data });
     }
 
     async findBySpiderManName(spiderManName: string): Promise<SpiderverseInterface> {
-        return this.prisma.spiderverses.findUnique({ where: { spiderManName } });
+        return await this.prisma.spiderverses.findUnique({ where: { spiderManName } });
     }
 
     async findAll(pageIndex: string): Promise<SpiderverseInterface[]> {
