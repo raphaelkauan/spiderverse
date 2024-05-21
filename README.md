@@ -4,7 +4,7 @@
 
 ## Description
 
-An api inspired by the spiderverse with the aim of registering spider men and their other villains.
+An api inspired by the spiderverse with the aim of registering several spider men and their other villains.
 
 ## Installation
 
