@@ -7,9 +7,10 @@ import { VillainModule } from "./modules/villain/villain.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./modules/auth/guards/jwt_auth.guard";
+import { EarthModule } from "./modules/earth/earth.module";
 
 @Module({
-    imports: [SpiderverseModule, VillainModule, AuthModule],
+    imports: [SpiderverseModule, VillainModule, AuthModule, EarthModule],
     controllers: [AppController],
     providers: [
         AppService,
