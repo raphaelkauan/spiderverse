@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/database/prisma.service";
 import { CreateVillainDto } from "../dto/create_villain.dto";
 import { VillainInterface } from "src/database/interfaces/villain.interface";
+import { UpdateVillainDto } from "../dto/update_villain.dto";
 
 @Injectable()
 export class VillainRepository {
@@ -52,5 +53,29 @@ export class VillainRepository {
         });
 
         return villainFindOne;
+    }
+
+    async updateVillain(id: string, updateVillainDto: UpdateVillainDto): Promise<any> {
+        const convertId = Number(id);
+        const villainUpdate = await this.prisma.villains.update({
+            where: { id: convertId },
+            data: {
+                villainName: updateVillainDto.villainName,
+                powers: updateVillainDto.powers,
+                fightVs: updateVillainDto.fightVs,
+            },
+            select: {
+                villainName: true,
+                powers: true,
+                fightVs: true,
+            },
+        });
+
+        return villainUpdate;
+    }
+
+    async deleteVillain(id: string): Promise<any> {
+        const convertId = Number(id);
+        return await this.prisma.villains.delete({ where: { id: convertId } });
     }
 }

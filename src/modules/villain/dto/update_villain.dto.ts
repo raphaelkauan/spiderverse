@@ -1,13 +1,4 @@
-import { IsString, MaxLength } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
+import { CreateVillainDto } from "./create_villain.dto";
 
-export class UpdateVillainDto {
-    @IsString()
-    @MaxLength(52)
-    villainName?: string;
-
-    @IsString()
-    powers?: string;
-
-    @IsString()
-    fightVs?: string;
-}
+export class UpdateVillainDto extends PartialType(CreateVillainDto) {}
