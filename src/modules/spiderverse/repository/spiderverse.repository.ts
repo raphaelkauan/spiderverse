@@ -22,7 +22,7 @@ export class SpiderverseRepository {
         return await this.prisma.spiderverses.findUnique({ where: { spiderManName } });
     }
 
-    async findAll(pageIndex: string): Promise<SpiderverseInterface[]> {
+    async findAllSpiderverse(pageIndex: string): Promise<SpiderverseInterface[]> {
         let skipValue = 0;
         if (pageIndex) {
             const convertPageIndex = Number(pageIndex);
@@ -48,7 +48,7 @@ export class SpiderverseRepository {
         return spiderFindAll;
     }
 
-    async findOne(id: string): Promise<SpiderverseInterface> {
+    async findOneSpiderverse(id: string): Promise<SpiderverseInterface> {
         const spiderFindOne = await this.prisma.spiderverses.findUnique({
             where: { id },
             select: {
@@ -64,7 +64,7 @@ export class SpiderverseRepository {
         return spiderFindOne;
     }
 
-    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<any> {
+    async updateSpiderverse(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<any> {
         const spiderUpdate = await this.prisma.spiderverses.update({
             where: {
                 id,
@@ -84,7 +84,7 @@ export class SpiderverseRepository {
         return spiderUpdate;
     }
 
-    async delete(id: string): Promise<any> {
+    async deleteSpiderverse(id: string): Promise<any> {
         return await this.prisma.spiderverses.delete({ where: { id } });
     }
 }

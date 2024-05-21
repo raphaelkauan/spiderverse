@@ -23,17 +23,17 @@ export class SpiderverseService {
         }
     }
 
-    async findAll(pageIndex?: string): Promise<SpiderverseInterface[]> {
+    async findAllSpiderverse(pageIndex?: string): Promise<SpiderverseInterface[]> {
         try {
-            const spiderFindAll = await this.spiderverseRepository.findAll(pageIndex);
+            const spiderFindAll = await this.spiderverseRepository.findAllSpiderverse(pageIndex);
             return spiderFindAll;
         } catch (error) {
             throw new error(error);
         }
     }
 
-    async findOne(id: string): Promise<SpiderverseInterface> {
-        const spider = await this.spiderverseRepository.findOne(id);
+    async findOneSpiderverse(id: string): Promise<SpiderverseInterface> {
+        const spider = await this.spiderverseRepository.findOneSpiderverse(id);
 
         if (!spider) {
             throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
@@ -42,7 +42,7 @@ export class SpiderverseService {
         return spider;
     }
 
-    async update(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
+    async updateSpiderverse(id: string, updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
         const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(updateSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {
@@ -50,22 +50,22 @@ export class SpiderverseService {
         }
 
         try {
-            await this.spiderverseRepository.update(id, updateSpiderverseDto);
+            await this.spiderverseRepository.updateSpiderverse(id, updateSpiderverseDto);
             return { message: "Spider atualizado com sucesso!" };
         } catch (error) {
             throw new error(error);
         }
     }
 
-    async delete(id: string): Promise<{ message: string }> {
-        const validationSpiderverse = await this.spiderverseRepository.findOne(id);
+    async deleteSpiderverse(id: string): Promise<{ message: string }> {
+        const validationSpiderverse = await this.spiderverseRepository.findOneSpiderverse(id);
 
         if (!validationSpiderverse) {
             throw new HttpException("Esse id está inválido!", HttpStatus.BAD_REQUEST);
         }
 
         try {
-            await this.spiderverseRepository.delete(id);
+            await this.spiderverseRepository.deleteSpiderverse(id);
             return { message: "Spider deletado com deletado!" };
         } catch (error) {
             throw new error(error);

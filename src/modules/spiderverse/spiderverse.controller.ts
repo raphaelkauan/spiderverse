@@ -17,25 +17,25 @@ export class SpiderverseController {
 
     @Get()
     @IsPublic()
-    findAll(@Query("pageIndex") pageIndex?: string): Promise<SpiderverseInterface[]> {
-        return this.spiderverseService.findAll(pageIndex);
+    findAllSpiderverse(@Query("pageIndex") pageIndex?: string): Promise<SpiderverseInterface[]> {
+        return this.spiderverseService.findAllSpiderverse(pageIndex);
     }
 
     @Get(":id")
     @IsPublic()
-    findOne(@Param("id") id: string): Promise<SpiderverseInterface> {
-        return this.spiderverseService.findOne(id);
+    findOneSpiderverse(@Param("id") id: string): Promise<SpiderverseInterface> {
+        return this.spiderverseService.findOneSpiderverse(id);
     }
 
     @Patch(":id")
     @IsPublic()
-    update(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
-        return this.spiderverseService.update(id, updateSpiderverseDto);
+    updateSpiderverse(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
+        return this.spiderverseService.updateSpiderverse(id, updateSpiderverseDto);
     }
 
     @Delete(":id")
     @IsPublic()
-    delete(@Param("id") id: string): Promise<{ message: string }> {
-        return this.spiderverseService.delete(id);
+    deleteSpiderverse(@Param("id") id: string): Promise<{ message: string }> {
+        return this.spiderverseService.deleteSpiderverse(id);
     }
 }

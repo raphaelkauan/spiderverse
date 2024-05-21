@@ -13,7 +13,7 @@ export class VillainService {
     ) {}
 
     async createVillain(createVillainDto: CreateVillainDto): Promise<VillainInterface> {
-        const validationSpider = await this.spiderverseRepository.findOne(createVillainDto.fightVs);
+        const validationSpider = await this.spiderverseRepository.findOneSpiderverse(createVillainDto.fightVs);
 
         if (!validationSpider) {
             throw new HttpException("fightVs inválido!", HttpStatus.BAD_GATEWAY);
