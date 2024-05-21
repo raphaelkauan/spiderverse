@@ -3,4 +3,5 @@ export interface VillainInterface {
     villainName: string;
     powers: string;
     fightVs: string;
+    dataCreate?: Date;
 }

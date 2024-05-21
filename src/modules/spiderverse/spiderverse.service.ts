@@ -16,12 +16,11 @@ export class SpiderverseService {
         }
 
         try {
-            await this.spiderverseRepository.createSpiderverse(createSpiderverseDto);
+            const spiderMan = await this.spiderverseRepository.createSpiderverse(createSpiderverseDto);
+            return { ...spiderMan, spiderManPassword: undefined };
         } catch (error) {
             throw new Error("Erro ao cadastrar!");
         }
-
-        return { ...createSpiderverseDto, spiderManPassword: undefined };
     }
 
     async findAll(pageIndex?: string): Promise<SpiderverseInterface[]> {

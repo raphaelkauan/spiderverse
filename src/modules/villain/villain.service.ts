@@ -24,4 +24,26 @@ export class VillainService {
             throw new error(error);
         }
     }
+
+    async findAllVillain(pageIndex?: string): Promise<VillainInterface[]> {
+        try {
+            const villainFindAll = await this.villainRepository.findAllVillain(pageIndex);
+            return villainFindAll;
+        } catch (error) {
+            throw new error(error);
+        }
+    }
+
+    async findOneVillain(id: string): Promise<VillainInterface> {
+        if (!/^\d+$/.test(id)) {
+            throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
+        }
+
+        const villainFindOne = await this.villainRepository.findOneVillain(id);
+
+        if (villainFindOne === null) {
+            throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
+        }
+        return villainFindOne;
+    }
 }

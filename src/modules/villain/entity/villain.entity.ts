@@ -3,4 +3,5 @@ export class Villain {
     villainName: string;
     powers: string;
     fightVs: string;
+    dataCreate?: Date;
 }

@@ -16,4 +16,6 @@ export class CreateVillainDto extends Villain {
     @IsNotEmpty()
     @IsString()
     fightVs: string;
+
+    dataCreate?: Date;
 }

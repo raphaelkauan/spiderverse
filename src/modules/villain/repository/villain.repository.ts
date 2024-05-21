@@ -14,4 +14,43 @@ export class VillainRepository {
 
         return await this.prisma.villains.create({ data });
     }
+
+    async findAllVillain(pageIndex?: string): Promise<VillainInterface[]> {
+        let skipValue = 0;
+        if (pageIndex) {
+            const convertPageIndex = Number(pageIndex);
+            skipValue = convertPageIndex * 10;
+        }
+
+        const villainFindAll = await this.prisma.villains.findMany({
+            select: {
+                id: true,
+                villainName: true,
+                powers: true,
+                fightVs: true,
+                dataCreate: true,
+                spiderverses: {
+                    select: {
+                        spiderManName: true,
+                    },
+                },
+            },
+            orderBy: {
+                dataCreate: "desc",
+            },
+            take: 5,
+            skip: skipValue,
+        });
+
+        return villainFindAll;
+    }
+
+    async findOneVillain(id: string): Promise<VillainInterface> {
+        const convertId = Number(id);
+        const villainFindOne = await this.prisma.villains.findUnique({
+            where: { id: convertId },
+        });
+
+        return villainFindOne;
+    }
 }
