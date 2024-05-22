@@ -9,21 +9,27 @@ An api inspired by the spiderverse with the aim of registering several spider me
 ## Installation
 
 ```bash
+# Install dependencies
 $ npm install
+
+# .env config
+DATABASE_URL = "conect mysql"
+JWT_SECRET_TOKEN = "random password"
+
+# Run database migrations
+$ npx prisma migrate dev
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# Initializing
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
+
+## Swagger
+
+**Route:** `` 
 
 ## License
 
