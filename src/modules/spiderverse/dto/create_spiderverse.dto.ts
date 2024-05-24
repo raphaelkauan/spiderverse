@@ -4,11 +4,19 @@ import { Spiderverse } from "../entity/spiderverse.entity";
 export class CreateSpiderverseDto extends Spiderverse {
     id?: string;
 
+    /**
+     * Spider-Man name. Required field and unique.
+     * @example "Miles Morales"
+     */
     @IsNotEmpty()
     @IsString()
     @MaxLength(52)
     spiderManName: string;
 
+    /**
+     * Spider-Man password. Required field.
+     * @example 123321
+     */
     @IsNotEmpty()
     @IsString()
     @MinLength(8)
@@ -17,10 +25,18 @@ export class CreateSpiderverseDto extends Spiderverse {
     })
     spiderManPassword: string;
 
+    /**
+     * Spider-Man Earth number. Required field.
+     * @example 1610
+     */
     @IsNotEmpty()
     @IsNumber()
     earth: number;
 
+    /**
+     * Description of Spider-Man powers. Required field.
+     * @example "Super strength, agility, spider-sense"
+     */
     @IsNotEmpty()
     @IsString()
     powers: string;

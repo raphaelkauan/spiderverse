@@ -29,7 +29,7 @@ $ npm run start:dev
 
 ## Swagger
 
-**Route:** `` 
+**Route:** `http://localhost:3000/v1/docs`
 
 ## License
 

@@ -12,14 +12,14 @@ export class SpiderverseService {
         const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(createSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {
-            throw new HttpException("Esse nome já existe!", HttpStatus.CONFLICT);
+            throw new HttpException("This name already exists!", HttpStatus.CONFLICT);
         }
 
         try {
             const spiderMan = await this.spiderverseRepository.createSpiderverse(createSpiderverseDto);
             return { ...spiderMan, spiderManPassword: undefined };
         } catch (error) {
-            throw new Error("Erro ao cadastrar!");
+            throw new Error("Error when registering!");
         }
     }
 
@@ -36,7 +36,7 @@ export class SpiderverseService {
         const spider = await this.spiderverseRepository.findOneSpiderverse(id);
 
         if (!spider) {
-            throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
+            throw new HttpException("Id not found!", HttpStatus.BAD_REQUEST);
         }
 
         return spider;
@@ -46,12 +46,12 @@ export class SpiderverseService {
         const validationSpiderManName = await this.spiderverseRepository.findBySpiderManName(updateSpiderverseDto.spiderManName);
 
         if (validationSpiderManName) {
-            throw new HttpException("Esse nome já existe!", HttpStatus.CONFLICT);
+            throw new HttpException("This name already exists!", HttpStatus.CONFLICT);
         }
 
         try {
             await this.spiderverseRepository.updateSpiderverse(id, updateSpiderverseDto);
-            return { message: "Spider atualizado com sucesso!" };
+            return { message: "Spider successfully updated!" };
         } catch (error) {
             throw new error(error);
         }
@@ -61,12 +61,12 @@ export class SpiderverseService {
         const validationSpiderverse = await this.spiderverseRepository.findOneSpiderverse(id);
 
         if (!validationSpiderverse) {
-            throw new HttpException("Esse id está inválido!", HttpStatus.BAD_REQUEST);
+            throw new HttpException("This id is invalid!", HttpStatus.BAD_REQUEST);
         }
 
         try {
             await this.spiderverseRepository.deleteSpiderverse(id);
-            return { message: "Spider deletado com deletado!" };
+            return { message: "Spider successfully deleted!" };
         } catch (error) {
             throw new error(error);
         }

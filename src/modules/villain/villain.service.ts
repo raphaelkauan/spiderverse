@@ -16,7 +16,7 @@ export class VillainService {
         const validationSpider = await this.spiderverseRepository.findOneSpiderverse(createVillainDto.fightVs);
 
         if (!validationSpider) {
-            throw new HttpException("fightVs inválido!", HttpStatus.BAD_GATEWAY);
+            throw new HttpException("Invalid fightVs!", HttpStatus.BAD_GATEWAY);
         }
 
         try {
@@ -37,20 +37,20 @@ export class VillainService {
 
     async findOneVillain(id: string): Promise<VillainInterface> {
         if (!/^\d+$/.test(id)) {
-            throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
+            throw new HttpException("Id not found!", HttpStatus.BAD_REQUEST);
         }
 
         const villainFindOne = await this.villainRepository.findOneVillain(id);
 
         if (villainFindOne === null) {
-            throw new HttpException("Id não encontrado!", HttpStatus.BAD_REQUEST);
+            throw new HttpException("Id not found!", HttpStatus.BAD_REQUEST);
         }
         return villainFindOne;
     }
 
     async updateVillain(id: string, updateVillainDto: UpdateSpiderverseDto): Promise<any> {
         if (!/^\d+$/.test(id)) {
-            throw new HttpException("Id inválido!", HttpStatus.BAD_REQUEST);
+            throw new HttpException("Invalid id!", HttpStatus.BAD_REQUEST);
         }
 
         try {
@@ -62,12 +62,12 @@ export class VillainService {
 
     async deleteVillain(id: string): Promise<any> {
         if (!/^\d+$/.test(id)) {
-            throw new HttpException("Id inválido!", HttpStatus.BAD_REQUEST);
+            throw new HttpException("Invalid id!", HttpStatus.BAD_REQUEST);
         }
 
         try {
             await this.villainRepository.deleteVillain(id);
-            return "Villain deletado com sucesso!";
+            return "Villain successfully deleted!";
         } catch (error) {
             throw new Error(error);
         }
