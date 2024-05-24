@@ -6,6 +6,12 @@
 
 An api inspired by the spiderverse with the aim of registering several spider men and their other villains.
 
+## Funcionalidades
+
+- Robust Validation: Use of Class Validator to ensure data quality.
+- Efficient Data Management: Using Prisma for database operations.
+- Authentication with JWT: Generation of JWT for privacy of other routes.
+
 ## Installation
 
 ```bash
@@ -30,6 +36,8 @@ $ npm run start:dev
 ## Swagger
 
 **Route:** `http://localhost:3000/v1/docs`
+
+  <img src="https://github.com/raphaelkauan/spiderverse/assets/111379005/5d7c81c1-a9a5-49f1-bd8e-1ab37388507b" width="750" alt="Doc" />
 
 ## License
 
