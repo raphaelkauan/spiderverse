@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `spiderverses` ADD COLUMN `data_create` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);

@@ -1,0 +1,49 @@
+version: '3.1'
+services:
+  spiderverse:
+    build:
+      context: .
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/api
+      - /usr/src/api/node_modules
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "123321"
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - app_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'emailfake@gmail.com'
+      PGADMIN_DEFAULT_PASSWORD: '123'
+    ports:
+      - 8088:80
+    depends_on:
+      - db
+    networks:
+      - app_network
+volumes:
+  db_data:
+
+networks:
+  app_network:
+    name: app_network
+    driver: bridge
+    external: true

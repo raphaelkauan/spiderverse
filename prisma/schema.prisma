@@ -1,9 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -24,7 +25,7 @@ model Villains {
   villainName  String       @map("villain_name")
   powers       String
   fightVs      String       @map("fight_vs")
-  spiderverses Spiderverses @relation(fields: [fightVs], references: [id], map: "Villains_fight_vs_fkey")
+  spiderverses Spiderverses @relation(fields: [fightVs], references: [id])
   dataCreate   DateTime     @default(now()) @map("data_create")
 
   @@index([fightVs], map: "Villains_fight_vs_fkey")
