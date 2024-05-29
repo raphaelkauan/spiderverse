@@ -11,15 +11,16 @@ An api inspired by the spiderverse with the aim of registering several spider me
 - Robust Validation: Use of Class Validator to ensure data quality.
 - Efficient Data Management: Using Prisma for database operations.
 - Authentication with JWT: Generation of JWT for privacy of other routes.
+- Dockerization: Implementation with Docker for ease of deployment and development.
 
-## Installation
+## Installation not using Docker
 
 ```bash
 # Install dependencies
 $ npm install
 
 # .env config
-DATABASE_URL = "conect mysql"
+DATABASE_URL = "conect postgres"
 JWT_SECRET_TOKEN = "random password"
 
 # Run database migrations
