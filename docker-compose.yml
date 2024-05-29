@@ -19,9 +19,9 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: "123321"
+      POSTGRES_PASSWORD: 123321
     ports:
-      - '5432:5432'
+      - 5432:5432
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
@@ -46,4 +46,3 @@ networks:
   app_network:
     name: app_network
     driver: bridge
-    external: true

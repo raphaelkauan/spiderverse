@@ -1,18 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/database/prisma.service";
+import { EarthRepository } from "./repository/earth.repository";
+import { SpiderverseInterface } from "src/database/interfaces/spiderverse.interface";
 
 @Injectable()
 export class EarthService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly earthRepository: EarthRepository) {}
 
-    async findSpiderverseEarth(id: string) {
-        const convertId = Number(id);
-        const earth = await this.prisma.spiderverses.findMany({
-            where: {
-                earth: convertId,
-            },
-        });
-
-        return earth;
+    async findSpiderverseEarth(id: string): Promise<SpiderverseInterface[]> {
+        return this.earthRepository.findSpiderverseEarth(id);
     }
 }
