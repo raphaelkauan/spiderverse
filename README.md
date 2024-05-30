@@ -13,6 +13,10 @@ An api inspired by the spiderverse with the aim of registering several spider me
 - Authentication with JWT: Generation of JWT for privacy of other routes.
 - Dockerization: Implementation with Docker for ease of deployment and development.
 
+## 🧪 Scripts e Casos de Teste:
+
+- [Clique aqui!]()
+
 ## Installation not using Docker
 
 ```bash
