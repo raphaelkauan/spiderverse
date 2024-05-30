@@ -6,16 +6,16 @@
 
 An api inspired by the spiderverse with the aim of registering several spider men and their other villains.
 
-## Funcionalidades
+## Functionalities
 
 - Robust Validation: Use of Class Validator to ensure data quality.
 - Efficient Data Management: Using Prisma for database operations.
 - Authentication with JWT: Generation of JWT for privacy of other routes.
 - Dockerization: Implementation with Docker for ease of deployment and development.
 
-## 🧪 Scripts e Casos de Teste:
+## 🧪 Scripts and Test Cases:
 
-- [Clique aqui!]()
+- [Click here!]()
 
 ## Installation not using Docker
 
