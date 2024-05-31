@@ -28,17 +28,17 @@ services:
     networks:
       - app_network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: 'emailfake@gmail.com'
-      PGADMIN_DEFAULT_PASSWORD: '123'
-    ports:
-      - 8088:80
-    depends_on:
-      - db
-    networks:
-      - app_network
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: 'emailfake@gmail.com'
+  #     PGADMIN_DEFAULT_PASSWORD: '123'
+  #   ports:
+  #     - 8088:80
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app_network
 volumes:
   db_data:
 

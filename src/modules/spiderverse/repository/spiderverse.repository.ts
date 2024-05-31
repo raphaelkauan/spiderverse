@@ -87,4 +87,17 @@ export class SpiderverseRepository {
     async deleteSpiderverse(id: string): Promise<any> {
         return await this.prisma.spiderverses.delete({ where: { id } });
     }
+
+    async allSpiderverse(): Promise<any> {
+        return await this.prisma.spiderverses.findMany({
+            select: {
+                id: true,
+                spiderManName: true,
+                spiderManPassword: false,
+                earth: true,
+                powers: true,
+                dataCreate: true,
+            },
+        });
+    }
 }

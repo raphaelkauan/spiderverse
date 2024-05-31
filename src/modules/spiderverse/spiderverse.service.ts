@@ -25,8 +25,11 @@ export class SpiderverseService {
 
     async findAllSpiderverse(pageIndex?: string): Promise<SpiderverseInterface[]> {
         try {
-            const spiderFindAll = await this.spiderverseRepository.findAllSpiderverse(pageIndex);
-            return spiderFindAll;
+            if (pageIndex === undefined) {
+                return await this.spiderverseRepository.allSpiderverse();
+            } else {
+                return await this.spiderverseRepository.findAllSpiderverse(pageIndex);
+            }
         } catch (error) {
             throw new error(error);
         }
