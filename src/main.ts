@@ -12,7 +12,7 @@ async function bootstrap() {
         .addBearerAuth()
         .setTitle("Spiderverse")
         .setDescription("An API built with NestJS and Prisma to explore data from the lands of the spiderverse.")
-        .setVersion("1.0")
+        .setVersion("1.0.0")
         .build();
 
     const document = SwaggerModule.createDocument(app, config);
