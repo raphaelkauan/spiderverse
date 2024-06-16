@@ -14,36 +14,36 @@ export class SpiderverseController {
     @Post()
     @IsPublic()
     @ApiOperation({ summary: "Create a new Spider-Man" })
-    createSpiderverse(@Body() createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
-        return this.spiderverseService.createSpiderverse(createSpiderverseDto);
+    async createSpiderverse(@Body() createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
+        return await this.spiderverseService.createSpiderverse(createSpiderverseDto);
     }
 
     @Get()
     @IsPublic()
     @ApiOperation({ summary: "Get all Spider-Man" })
     @ApiQuery({ name: "pageIndex" })
-    findAllSpiderverse(@Query("pageIndex") pageIndex?: string): Promise<SpiderverseInterface[]> {
-        return this.spiderverseService.findAllSpiderverse(pageIndex);
+    async findAllSpiderverse(@Query("pageIndex") pageIndex?: string): Promise<SpiderverseInterface[]> {
+        return await this.spiderverseService.findAllSpiderverse(pageIndex);
     }
 
     @Get(":id")
     @IsPublic()
     @ApiOperation({ summary: "Get a Spider-Man" })
-    findOneSpiderverse(@Param("id") id: string): Promise<SpiderverseInterface> {
-        return this.spiderverseService.findOneSpiderverse(id);
+    async findOneSpiderverse(@Param("id") id: string): Promise<SpiderverseInterface> {
+        return await this.spiderverseService.findOneSpiderverse(id);
     }
 
     @Patch(":id")
     @IsPublic()
     @ApiOperation({ summary: "Update a Spider-Man" })
-    updateSpiderverse(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
-        return this.spiderverseService.updateSpiderverse(id, updateSpiderverseDto);
+    async updateSpiderverse(@Param("id") id: string, @Body() updateSpiderverseDto: UpdateSpiderverseDto): Promise<{ message: string }> {
+        return await this.spiderverseService.updateSpiderverse(id, updateSpiderverseDto);
     }
 
     @Delete(":id")
     @IsPublic()
     @ApiOperation({ summary: "Delete a Spider-Man" })
-    deleteSpiderverse(@Param("id") id: string): Promise<{ message: string }> {
-        return this.spiderverseService.deleteSpiderverse(id);
+    async deleteSpiderverse(@Param("id") id: string): Promise<{ message: string }> {
+        return await this.spiderverseService.deleteSpiderverse(id);
     }
 }
