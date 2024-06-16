@@ -10,7 +10,7 @@ export class EarthController {
 
     @Get(":id")
     @ApiOperation({ summary: "Return the Spider-Man from each land" })
-    findSpiderverseEarth(@Param("id") id: string): Promise<SpiderverseInterface[]> {
-        return this.earthService.findSpiderverseEarth(id);
+    async findSpiderverseEarth(@Param("id") id: string): Promise<SpiderverseInterface[]> {
+        return await this.earthService.findSpiderverseEarth(id);
     }
 }

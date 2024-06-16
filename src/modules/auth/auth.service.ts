@@ -8,7 +8,7 @@ import { JwtService } from "@nestjs/jwt";
 export class AuthService {
     constructor(
         private readonly spiderverseRepository: SpiderverseRepository,
-        private readonly jwtServiec: JwtService,
+        private readonly jwtService: JwtService,
     ) {}
 
     async login(loginDto: LoginDto): Promise<any> {
@@ -30,7 +30,7 @@ export class AuthService {
             dataCreate: spider.dataCreate,
         };
 
-        const token: string = this.jwtServiec.sign(payload);
+        const token: string = this.jwtService.sign(payload);
         return {
             access_token: token,
         };

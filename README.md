@@ -15,7 +15,7 @@ An api inspired by the spiderverse with the aim of registering several spider me
 
 ## 🧪 Scripts and Test Cases:
 
-- [Click here!]()
+- [Click here!](https://github.com/raphaelkauan/spiderverse-performance-test)
 
 ## Installation not using Docker
 

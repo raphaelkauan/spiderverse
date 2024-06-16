@@ -7,6 +7,6 @@ export class EarthService {
     constructor(private readonly earthRepository: EarthRepository) {}
 
     async findSpiderverseEarth(id: string): Promise<SpiderverseInterface[]> {
-        return this.earthRepository.findSpiderverseEarth(id);
+        return await this.earthRepository.findSpiderverseEarth(id);
     }
 }
