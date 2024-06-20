@@ -3,10 +3,14 @@ import { PrismaService } from "src/database/prisma.service";
 import { CreateVillainDto } from "../dto/create_villain.dto";
 import { VillainInterface } from "src/database/interfaces/villain.interface";
 import { UpdateVillainDto } from "../dto/update_villain.dto";
+import { CacheService } from "src/modules/shared/cache/redis-cache.service";
 
 @Injectable()
 export class VillainRepository {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly cacheService: CacheService,
+    ) {}
 
     async createVillain(createVillainDto: CreateVillainDto): Promise<VillainInterface> {
         const data = {
@@ -17,6 +21,13 @@ export class VillainRepository {
     }
 
     async findAllVillain(pageIndex?: string): Promise<VillainInterface[]> {
+        const cacheKey = "findAllVillain";
+        const cacheData = await this.cacheService.get(cacheKey);
+
+        if (cacheData) {
+            return JSON.parse(cacheData);
+        }
+
         let skipValue = 0;
         if (pageIndex) {
             const convertPageIndex = Number(pageIndex);
@@ -42,6 +53,8 @@ export class VillainRepository {
             take: 5,
             skip: skipValue,
         });
+
+        await this.cacheService.set(cacheKey, JSON.stringify(villainFindAll), 20);
 
         return villainFindAll;
     }

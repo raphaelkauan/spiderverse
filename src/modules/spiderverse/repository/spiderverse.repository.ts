@@ -23,11 +23,22 @@ export class SpiderverseRepository {
     }
 
     async findBySpiderManName(spiderManName: string): Promise<SpiderverseInterface> {
-        return await this.prisma.spiderverses.findUnique({ where: { spiderManName } });
+        const cacheKey = "findBySpiderManName";
+        const cacheData = await this.cacheService.get(cacheKey);
+
+        if (cacheData) {
+            return JSON.parse(cacheData);
+        }
+
+        const findBySpiderManName = await this.prisma.spiderverses.findUnique({ where: { spiderManName } });
+
+        await this.cacheService.set(cacheKey, JSON.stringify(findBySpiderManName), 20);
+
+        return findBySpiderManName;
     }
 
     async findAllSpiderverse(pageIndex: string): Promise<SpiderverseInterface[]> {
-        const cacheKey = "spiderverse";
+        const cacheKey = "findAllSpiderverse";
         const cacheData = await this.cacheService.get(cacheKey);
 
         if (cacheData) {
@@ -56,8 +67,7 @@ export class SpiderverseRepository {
             skip: skipValue,
         });
 
-        const test = await this.cacheService.set(cacheKey, JSON.stringify(spiderFindAll), 20);
-        console.log(test);
+        await this.cacheService.set(cacheKey, JSON.stringify(spiderFindAll), 20);
 
         return spiderFindAll;
     }
@@ -103,7 +113,14 @@ export class SpiderverseRepository {
     }
 
     async allSpiderverse(): Promise<any> {
-        return await this.prisma.spiderverses.findMany({
+        const cacheKey = "allSpiderverse";
+        const cacheData = await this.cacheService.get(cacheKey);
+
+        if (cacheData) {
+            return JSON.parse(cacheData);
+        }
+
+        const allSpiderverse = await this.prisma.spiderverses.findMany({
             select: {
                 id: true,
                 spiderManName: true,
@@ -113,5 +130,9 @@ export class SpiderverseRepository {
                 dataCreate: true,
             },
         });
+
+        await this.cacheService.set(cacheKey, JSON.stringify(cacheData), 20);
+
+        return allSpiderverse;
     }
 }
