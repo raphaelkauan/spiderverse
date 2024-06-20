@@ -4,10 +4,14 @@ import { CreateSpiderverseDto } from "src/modules/spiderverse/dto/create_spiderv
 import { SpiderverseInterface } from "../../../database/interfaces/spiderverse.interface";
 import * as bcrypt from "bcrypt";
 import { UpdateSpiderverseDto } from "../dto/update_spiderverse.dto";
+import { CacheService } from "src/modules/shared/cache/redis-cache.service";
 
 @Injectable()
 export class SpiderverseRepository {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly cacheService: CacheService,
+    ) {}
 
     async createSpiderverse(createSpiderverseDto: CreateSpiderverseDto): Promise<SpiderverseInterface> {
         const data = {
@@ -23,6 +27,13 @@ export class SpiderverseRepository {
     }
 
     async findAllSpiderverse(pageIndex: string): Promise<SpiderverseInterface[]> {
+        const cacheKey = "spiderverse";
+        const cacheData = await this.cacheService.get(cacheKey);
+
+        if (cacheData) {
+            return JSON.parse(cacheData);
+        }
+
         let skipValue = 0;
         if (pageIndex) {
             const convertPageIndex = Number(pageIndex);
@@ -44,6 +55,9 @@ export class SpiderverseRepository {
             take: 5,
             skip: skipValue,
         });
+
+        const test = await this.cacheService.set(cacheKey, JSON.stringify(spiderFindAll), 20);
+        console.log(test);
 
         return spiderFindAll;
     }

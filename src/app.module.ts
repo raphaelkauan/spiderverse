@@ -8,9 +8,11 @@ import { AuthModule } from "./modules/auth/auth.module";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./modules/auth/guards/jwt_auth.guard";
 import { EarthModule } from "./modules/earth/earth.module";
+import { ConfigModule } from "@nestjs/config";
+import { RedisModule } from "./modules/shared/cache/redis-cache.module";
 
 @Module({
-    imports: [SpiderverseModule, VillainModule, AuthModule, EarthModule],
+    imports: [RedisModule, SpiderverseModule, VillainModule, AuthModule, EarthModule, ConfigModule.forRoot()],
     controllers: [AppController],
     providers: [
         AppService,
