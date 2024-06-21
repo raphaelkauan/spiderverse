@@ -12,6 +12,7 @@ An api inspired by the spiderverse with the aim of registering several spider me
 - Efficient Data Management: Using Prisma for database operations.
 - Authentication with JWT: Generation of JWT for privacy of other routes.
 - Dockerization: Implementation with Docker for ease of deployment and development.
+- Redis: Redis implementation for cache management.
 
 ## 🧪 Scripts and Test Cases:
 
