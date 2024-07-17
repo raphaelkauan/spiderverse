@@ -8,15 +8,15 @@ An api inspired by the spiderverse with the aim of registering several spider me
 
 ## Functionalities
 
-- Robust Validation: Use of Class Validator to ensure data quality.
-- Efficient Data Management: Using Prisma for database operations.
-- Authentication with JWT: Generation of JWT for privacy of other routes.
-- Dockerization: Implementation with Docker for ease of deployment and development.
-- Redis: Redis implementation for cache management.
+-   Robust Validation: Use of Class Validator to ensure data quality.
+-   Efficient Data Management: Using Prisma for database operations.
+-   Authentication with JWT: Generation of JWT for privacy of other routes.
+-   Dockerization: Implementation with Docker for ease of deployment and development.
+-   Redis: Redis implementation for cache management.
 
 ## 🧪 Scripts and Test Cases:
 
-- [Click here!](https://github.com/raphaelkauan/spiderverse-performance-test)
+-   [Click here!](https://github.com/raphaelkauan/spiderverse-performance-test)
 
 ## Installation not using Docker
 
@@ -27,6 +27,9 @@ $ npm install
 # .env config
 DATABASE_URL = "conect postgres"
 JWT_SECRET_TOKEN = "random password"
+
+REDIS_HOST = "host redis"
+REDIS_PORT = "port"
 
 # Run database migrations
 $ npx prisma migrate dev
