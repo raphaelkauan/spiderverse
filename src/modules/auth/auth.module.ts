@@ -6,6 +6,8 @@ import { PrismaService } from "src/database/prisma.service";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./guards/strategies/jwt.strategy";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 @Module({
     imports: [
